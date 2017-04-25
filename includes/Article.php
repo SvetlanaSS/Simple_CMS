@@ -15,7 +15,6 @@ class Article
 	// 	return $this->pdo->resultset();
 	// }
 
-
 	// get all posts combined with user names
 	public function getAllArticlesWithUserNames()
 	{
@@ -23,16 +22,15 @@ class Article
 			"SELECT post.post_id, post.title, post.content, post.post_date, user.user_name, post.likes_count
 			 FROM post
 			 INNER JOIN user
-			 ON user.user_id=post.created_by
-			 ORDER BY post.post_date DESC");
+			 ON user.user_id=post.created_by");
 		return $this->pdo->resultset();
 	}
 
-	// get a single article when you click on it
+	// Returns a single post
 	public function getSingleArticle($post_id)
 	{
 		$this->pdo->query(
-			"SELECT post.post_id, post.title, post.content, post.post_date, user.user_name
+			"SELECT post.post_id, post.title, post.content, post.post_date, user.user_name, post.likes_count
 			 FROM post
 			 INNER JOIN user
 			 ON user.user_id=post.created_by
@@ -40,7 +38,7 @@ class Article
 		return $this->pdo->resultset();
 	}
 
-	// add a article
+	// adds a article to the database
 	public function addArticle() {
 		$title = isset($_POST['title']) ? $_POST['title'] : '';
 		$date = date('Y-m-d H:i:s');
@@ -56,7 +54,6 @@ class Article
 		// $this->pdo->bind(':created_by', $user_name);
 
 		$this->pdo->execute();
-
 	}
 
 	// get all the articles according to the user name
@@ -89,5 +86,55 @@ class Article
 
 	}
 
+	// gets likes for a post filtered by user id
+	public function getLikesForPost($post_id, $user_id){
+		$this->pdo->query(
+			"SELECT user.user_name, post.likes_count, post.title
+			FROM post
+			INNER JOIN like_count
+			ON post.post_id = like_count.post_id
+			INNER JOIN user
+			ON user.user_id = like_count.user_id
+			WHERE user.user_id = $user_id
+			AND post.post_id = $post_id");
+		return $this->pdo->resultset();
+	}
+
+	// adds a like to a post and increments like_count in post table
+	public function addLikeToPost($post_id, $user_id){
+		$this->pdo->query(
+			"INSERT INTO like_count(post_id, user_id)
+			VALUES($post_id, $user_id)");
+
+			$this->pdo->bind(':post_id', $post_id);
+			$this->pdo->bind(':user_id', $user_id);
+
+			$this->pdo->execute();
+
+			$this->pdo->query(
+				"UPDATE post
+				SET post.likes_count = post.likes_count + 1
+				WHERE post.post_id = $post_id"
+			);
+			$this->pdo->execute();
+	}
+
+	// removes a like from the database and decreases like_count in post table
+	public function removeLikeFromPost($post_id, $user_id){
+		$this->pdo->query(
+			"DELETE FROM like_count
+			WHERE like_count.post_id = $post_id AND like_count.user_id = $user_id
+			");
+
+			$this->pdo->execute();
+
+			$this->pdo->query(
+				"UPDATE post
+				SET post.likes_count = post.likes_count - 1
+				WHERE post.post_id = $post_id"
+			);
+
+			$this->pdo->execute();
+	}
 }
 ?>

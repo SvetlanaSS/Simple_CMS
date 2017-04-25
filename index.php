@@ -1,7 +1,6 @@
 <?php
   //require_once 'includes/session.php';
   require_once 'includes/error.php';
-
   require_once 'includes/Database.php';
   require_once 'includes/Article.php';
   require_once 'includes/templates/ArticleTemplate.php';
@@ -19,11 +18,14 @@
 
   <div class="container top_header">
     <h1>Dela dina livshistorier här</h1>
-    <?php
-      // print all articles
-      echo $articleView->getArticleList($articleData);
-    ?>
-  <div>
+    <div class="row">
+      <?php
+        // print all articles
+        echo $articleView->getArticleList($articleData, $articleModel);
+      ?>
+    </div>
+  </div>
+
 <?php
   include_once "partials/footer.php";
 ?>

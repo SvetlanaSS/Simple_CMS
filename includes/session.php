@@ -15,6 +15,4 @@
 
 	var_dump($_SESSION['loggedIn']);
 
-
-
 ?>

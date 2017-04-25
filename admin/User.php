@@ -17,7 +17,6 @@ class User
 		$isAdmin = 0;
 
 		$this->pdo->query('INSERT INTO user (user_name, email, password, is_admin) VALUES (:user_name, :email, :password, :is_admin)');
-
 		$this->pdo->bind(':user_name', $userName);
 		$this->pdo->bind(':email', $userEmail);
 		$this->pdo->bind(':password', $password);
@@ -36,6 +35,7 @@ class User
 		$this->pdo->execute();
 		if($this->pdo->rowCount() > 0){
 			$this->setErrorMessage('nameError','Användarnamnet är redan taget. Vänligen välj ett annat');
+
 			$isRegistred = true;
 		}
 
@@ -82,5 +82,4 @@ class User
 		$this->errorMessage[$key] = $message;
 	}
 }
-
 ?>
