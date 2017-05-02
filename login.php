@@ -1,7 +1,7 @@
 <?php
-  require_once "dbconfig.php";
+  require_once 'includes/Database.php';
 
-  $link = db_connect();
+  $database = new Database();
 
   include_once "partials/head.php";
   include_once "partials/navmenu.php";
