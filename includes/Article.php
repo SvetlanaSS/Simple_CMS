@@ -1,6 +1,6 @@
 <?php
 
-class Posts
+class Article
 {
 	private $pdo;
 
@@ -9,9 +9,9 @@ class Posts
 		$this->pdo = $pdo;
 	}
 
-	public function getAllPosts()
+	public function getAllArticles()
 	{
-		$this->pdo->query('SELECT title, content, date FROM post');
+		$this->pdo->query('SELECT * FROM post');
 		return $this->pdo->resultset();
 	}
 }
