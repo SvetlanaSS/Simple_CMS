@@ -1,17 +1,17 @@
 
         <form class="form-signin" action="admin/register.php" method="POST" name="registerform">
           <div class="form-group <?php if(isset($nameError)) { echo 'has-error'; } ?>">
-           <label class="control-label" for="userName">Användarnamn</label>
-           <input type="login" class="form-control" name="userName" placeholder="Användarnamn" required autofocus>
+           <label class="control-label" for="userName">Användarnamn *</label>
+           <input type="login" class="form-control" name="userName" required>
            <span id="nameError" class="help-block"><?php if(isset($nameError)) { echo $nameError; } ?></span>
           </div>
           <div class="form-group">
-            <label class="control-label" for="userPassword">Lösenord</label>
-            <input type="password" class="form-control" name="userPassword" placeholder="Lösenord" required autofocus>
+            <label class="control-label" for="userPassword">Lösenord *</label>
+            <input type="password" class="form-control" name="userPassword" required>
           </div>
           <div class="form-group <?php if(isset($emailError)) { echo 'has-error'; } ?>">
-            <label class="control-label" for="userEmail">Email</label>
-            <input type="text" class="form-control" name="userEmail" placeholder="Email adress" required autofocus>
+            <label class="control-label" for="userEmail">Email *</label>
+            <input type="text" class="form-control" name="userEmail"  required>
              <span id="emailError" class="help-block"><?php if(isset($emailError)) { echo $emailError; } ?></span>
           </div>
           <div class="form-group">
