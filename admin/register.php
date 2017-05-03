@@ -8,7 +8,7 @@ $user = new User($database);
 $validation_class = '';
 if(! $user->isRegistredUser()){
 	$user->addUser();
-	header("Location: /simple-cms-group/Simple_CMS/");
+	header("Location: /simple-cms-group/Simple_CMS/login.php?registerSuccess=true");
 }
 else
 {
