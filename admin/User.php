@@ -35,14 +35,14 @@ class User
 		$this->pdo->query("SELECT * FROM user WHERE name='$userName'");
 		$this->pdo->execute();
 		if($this->pdo->rowCount() > 0){
-			$this->setErrorMessage('nameError','Username already taken. Please choose another.<br>');
+			$this->setErrorMessage('nameError','Användarnamnet är redan taget. Vänligen välj ett annat');
 			$isRegistred = true;			
 		}
 
 		$this->pdo->query("SELECT * FROM user WHERE email='$userEmail'");
 		$this->pdo->execute();
 		if($this->pdo->rowCount() > 0){
-			$this->setErrorMessage('emailError', 'Email already exists. Please choose another.<br>');
+			$this->setErrorMessage('emailError', 'Email-adressen är redan registrerad. Vänligen välj ett annat');
 			$isRegistred = true;			
 		}		
 
