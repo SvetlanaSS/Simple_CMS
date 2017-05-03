@@ -2,30 +2,11 @@
 require_once 'includes/error.php';
 include_once "partials/head.php";
 include_once "partials/navmenu.php";
-require_once 'includes/Database.php';
-require_once 'admin/User.php';
 
-$database = new Database();
-$user = new User($database);
-$validation_class = '';
+$nameError = isset($_GET['nameError']) ? $_GET['nameError'] : null;
+$emailError = isset($_GET['emailError']) ? $_GET['emailError'] : null;
 
-if(! $user->isRegistredUser()){
-	$user->addUser();
-	$validation_class = 'has-success';
-	echo 'Alrighty then. You are registred.';
-}
-else
-{
-	//print_r($user->getErrormessage());
-	//echo isset($user->getErrormessage()['emailError']);
-	$nameError = isset($user->getErrormessage()['nameError']) ? $user->getErrormessage()['nameError']: '';
-	$emailError = isset($user->getErrormessage()['emailError']) ? $user->getErrormessage()['emailError']: '';
-	$validation_class = 'has-error';
-	//echo $nameError;
-	//echo $emailError; 
-}
 ?>
-
 <div class="container top_header">
   <div class="row">
     <div class="col-sm-12 col-md-6 col-md-offset-3">

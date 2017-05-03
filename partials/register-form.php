@@ -1,6 +1,6 @@
 
-        <form class="form-signin" action="register.php" method="POST" name="registerform">
-          <div class="form-group <?php if(isset($validation_class)) { echo $validation_class; }?>">
+        <form class="form-signin" action="admin/register.php" method="POST" name="registerform">
+          <div class="form-group <?php if(isset($nameError)) { echo 'has-error'; } ?>">
            <label class="control-label" for="userName">Name</label>
            <input type="login" class="form-control" name="userName" placeholder="Användarnamn" required autofocus>
            <span id="nameError" class="help-block"><?php if(isset($nameError)) { echo $nameError; } ?></span>
@@ -9,7 +9,7 @@
             <label class="control-label" for="userPassword">Password</label>
             <input type="password" class="form-control" name="userPassword" placeholder="Lösenord" required autofocus>
           </div>
-          <div class="form-group <?php if(isset($validation_class)) { echo $validation_class; }?>">
+          <div class="form-group <?php if(isset($emailError)) { echo 'has-error'; } ?>">
             <label class="control-label" for="userEmail">Email</label>
             <input type="text" class="form-control" name="userEmail" placeholder="Email adress" required autofocus>
              <span id="emailError" class="help-block"><?php if(isset($emailError)) { echo $emailError; } ?></span>
