@@ -5,7 +5,7 @@
 
 	$database = new Database();
 	$user = new User($database);
-
+	$validation_class = '';
 	if(! $user->isRegistredUser()){
 		$user->addUser();
 		echo 'Alrighty then. You are registred.';
@@ -13,10 +13,10 @@
 	else
 	{
 		//print_r($user->getErrormessage());
-		if(count($user->getErrormessage())){
-			foreach($user->getErrormessage() as $message){
-				echo $message;
-			}
-		}
+		//echo isset($user->getErrormessage()['emailError']);
+		$nameError = isset($user->getErrormessage()['nameError']) ? $user->getErrormessage()['nameError']: '';
+		$emailError = isset($user->getErrormessage()['emailError']) ? $user->getErrormessage()['emailError']: '';
+		echo $nameError;
+		echo $emailError; 
 	}
  ?> 

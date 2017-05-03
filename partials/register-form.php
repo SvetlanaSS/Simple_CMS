@@ -1,18 +1,18 @@
-<div class="container top_header">
-  <div class="row">
-    <div class="col-sm-12 col-md-6 col-md-offset-3">
-      <h1 class="text-center login-title">Registrera dig för att posta inlägg</h1>
-      <hr>
-      <div class="account-wall">
-        <form class="form-signin" action="admin/register.php" method="POST" name="registerform">
-          <div class="form-group">
-            <input type="login" class="form-control" name="userName" placeholder="Användarnamn" required autofocus>
+
+        <form class="form-signin" action="register.php" method="POST" name="registerform">
+          <div class="form-group <?php if(isset($validation_class)) { echo $validation_class; }?>">
+           <label class="control-label" for="userName">Name</label>
+           <input type="login" class="form-control" name="userName" placeholder="Användarnamn" required autofocus>
+           <span id="nameError" class="help-block"><?php if(isset($nameError)) { echo $nameError; } ?></span>
           </div>
           <div class="form-group">
+            <label class="control-label" for="userPassword">Password</label>
             <input type="password" class="form-control" name="userPassword" placeholder="Lösenord" required autofocus>
           </div>
-          <div class="form-group">
+          <div class="form-group <?php if(isset($validation_class)) { echo $validation_class; }?>">
+            <label class="control-label" for="userEmail">Email</label>
             <input type="text" class="form-control" name="userEmail" placeholder="Email adress" required autofocus>
+             <span id="emailError" class="help-block"><?php if(isset($emailError)) { echo $emailError; } ?></span>
           </div>
           <div class="form-group">
             <span>Genom att skapa ett konto hos BlogLife godkänner du vårt användaravtal</span>
@@ -27,7 +27,3 @@
             <p class="regtext">Har du redan ett konto? <a href="login.php"> Logga in</a>!</p>
           </div>
         </form>
-      </div>
-    </div>
-  </div>
-</div>
