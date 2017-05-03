@@ -21,18 +21,13 @@ class ArticleTemplate
 		 return $postList;
 	}
 
-	public function getUserName($created_by)
-	{
-		$result = "SELECT name FROM user WHERE user_id = $created_by";
-		return $result;
-	}
-
 	public function getArticle($article)
 	{
 		$article = $article[0];
 		$chunk = '';
 		$chunk .= '<div class="article">' .
-		      '<h5>' . $article["title"] . '</h5>' .
+					'<h3>' . $article['name'] . '</h3>' .
+					'<h5>' . $article["title"] . '</h5>' .
 		      '<em>Date:' . $article["date"] . '</em>' .
 		      ' <p>' .  $article["content"] . '</p>' .
 		    '</div>';
