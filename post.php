@@ -1,4 +1,5 @@
 <?php
+  require_once 'includes/error.php';
   require_once 'includes/Database.php';
   require_once 'includes/Article.php';
   require_once 'includes/templates/ArticleTemplate.php';
