@@ -11,7 +11,7 @@
   $articleView = new ArticleTemplate();
 
   // fetch articles from db
-  $articleData = $articleModel->getAllArticles();
+  $articleData = $articleModel->getAllArticlesWithUserNames();
 
   include_once "partials/head.php";
   include_once "partials/navmenu.php";
@@ -19,11 +19,11 @@
 
   <div class="container top_header">
     <h1>Dela dina livshistorier här</h1>
-    <?php  
+    <?php
       // print all articles
       echo $articleView->getArticleList($articleData);
-    ?>      
-  <div>  
-<?php    
+    ?>
+  <div>
+<?php
   include_once "partials/footer.php";
 ?>
