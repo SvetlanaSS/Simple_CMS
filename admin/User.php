@@ -35,14 +35,14 @@ class User
 		$this->pdo->query("SELECT * FROM user WHERE name='$userName'");
 		$this->pdo->execute();
 		if($this->pdo->rowCount() > 0){
-			$this->setErrorMessage('Username already taken. Please choose another.<br>');
+			$this->setErrorMessage('nameError','Username already taken. Please choose another.<br>');
 			$isRegistred = true;			
 		}
 
 		$this->pdo->query("SELECT * FROM user WHERE email='$userEmail'");
 		$this->pdo->execute();
 		if($this->pdo->rowCount() > 0){
-			$this->setErrorMessage('Email already exists. Please choose another.<br>');
+			$this->setErrorMessage('emailError', 'Email already exists. Please choose another.<br>');
 			$isRegistred = true;			
 		}		
 
@@ -54,9 +54,9 @@ class User
 		return $this->errorMessage;
 	}
 
-	public function setErrorMessage($message)
+	public function setErrorMessage($key, $message)
 	{
-		array_push($this->errorMessage, $message);
+		$this->errorMessage[$key] = $message;
 	}	
 }
 
