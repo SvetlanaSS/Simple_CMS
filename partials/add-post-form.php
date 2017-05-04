@@ -1,7 +1,7 @@
         <form class="form-signin" action="admin/new-post.php" method="POST" name="newpostform">
           <div class="form-group">
-            <label class="control-label" for="header">Titel *</label>
-            <input type="text" class="form-control" name="header" autofocus required>
+            <label class="control-label" for="title">Titel *</label>
+            <input type="text" class="form-control" name="title" autofocus required>
           </div>
           <div class="form-group">
             <label class="control-label" for="content">Text *</label>
