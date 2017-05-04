@@ -37,6 +37,25 @@ class Article
 			 WHERE post_id = $post_id");
 		return $this->pdo->resultset();
 	}
+
+	public function addArticle() {
+		$title = isset($_POST['title']) ? $_POST['title'] : '';
+		$date = isset($_POST['date']) ? $_POST['date'] : '';
+		$content = isset($_POST['content']) ? $_POST['content'] : '';
+		$userName = isset($_POST['userName']) ? $_POST['userName'] : '';
+
+		$this->pdo->query('INSERT INTO post (title, date, content, created_by) VALUES (:title, :date, :content, :created_by)');
+
+		$this->pdo->bind(':title', $title);
+		$this->pdo->bind(':date', $date);
+		$this->pdo->bind(':content', $content);
+		$this->pdo->bind(':created_by', $userName);
+
+		$this->pdo->execute();
+
+	}
+	
 }
+
 
 ?>
