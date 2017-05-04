@@ -5,7 +5,6 @@
 require_once '../includes/Database.php';
 require_once '../includes/error.php';
 require_once '../includes/helperFunctions.php';
-require_once '../includes/formValidation.php';
 require_once 'User.php';
 
 $database = new Database();
@@ -15,9 +14,11 @@ $host = $_SERVER['HTTP_HOST'];
 $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\admin');
 $redirect = '';
 
-//echo isEmailFieldValid('userEmail');
-
-if(! $user->isRegistredUser()){
+if($user->isEmailFieldValid('userEmail')){
+	//print_r($user->getErrormessage());
+	$redirect =  'register.php?' . get_query_string($user->getErrormessage());
+	header("Location: http://$host$uri/$redirect");	
+}elseif(! $user->isRegistredUser()){
 	$user->addUser();
 	$redirect = 'login.php?registerSuccess=true';
 	header("Location: http://$host$uri/$redirect");
@@ -26,4 +27,5 @@ if(! $user->isRegistredUser()){
 	$redirect =  'register.php?' . get_query_string($user->getErrormessage());
 	header("Location: http://$host$uri/$redirect");
 }
+
 ?>

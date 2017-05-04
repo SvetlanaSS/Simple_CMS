@@ -49,6 +49,29 @@ class User
 		return $isRegistred;
 	}	
 
+	public function test_input($data) {
+	  $data = trim($data);
+	  $data = stripslashes($data);
+	  $data = htmlspecialchars($data);
+	  return $data;
+	}
+
+	public function isEmailFieldValid($fieldName) {
+		$emailErr = false;
+		if (empty($_POST[$fieldName])) {
+			$this->setErrorMessage('emailError', 'Vänligen fyll i mejladress');
+			$emailErr = true;
+	  	} else {
+	    	$email = $this->test_input($_POST[$fieldName]);
+	    	// check if e-mail address is well-formed
+		    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		      $this->setErrorMessage('emailError', 'Mejladressen är inte giltig. Vänligen prova igen.'); 
+		      $emailErr = true;
+		    }
+		}
+		return $emailErr;
+	}	
+
 	public function getErrorMessage()
 	{
 		return $this->errorMessage;
