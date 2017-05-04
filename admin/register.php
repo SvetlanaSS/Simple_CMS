@@ -15,6 +15,8 @@ $host = $_SERVER['HTTP_HOST'];
 $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\admin');
 $redirect = '';
 
+//echo isEmailFieldValid('userEmail');
+
 if(! $user->isRegistredUser()){
 	$user->addUser();
 	$redirect = 'login.php?registerSuccess=true';
