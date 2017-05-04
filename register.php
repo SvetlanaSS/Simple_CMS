@@ -1,10 +1,11 @@
 <?php
 require_once 'includes/error.php';
+
 include_once "partials/head.php";
 include_once "partials/navmenu.php";
 
-$nameError = isset($_GET['nameError']) ? $_GET['nameError'] : null;
-$emailError = isset($_GET['emailError']) ? $_GET['emailError'] : null;
+$nameError = isset($_GET['nameError']) ? $_GET['nameError'] : '';
+$emailError = isset($_GET['emailError']) ? $_GET['emailError'] : '';
 
 ?>
 <div class="container top_header">
