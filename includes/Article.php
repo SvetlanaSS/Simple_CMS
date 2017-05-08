@@ -70,8 +70,7 @@ class Article
 	}
 
 	// get a single article when you click on it
-	public function getSingleArticleByUser($post_id)
-	{
+	public function getSingleArticleByUser($post_id) {
 		$this->pdo->query(
 			// ADD VALIDATION BY USER NAME
 			"SELECT post.post_id, post.title, post.content, post.date
@@ -80,7 +79,14 @@ class Article
 		return $this->pdo->resultset();
 	}
 
+	// edit the article according to the user name
+	public function editArticleByUser() {
+
+	}
+	// delete the article according to the user name
+	public function deleteArticleByUser() {
+
+	}
+
 }
-
-
 ?>

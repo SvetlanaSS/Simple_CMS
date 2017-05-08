@@ -27,9 +27,7 @@
     <h1>Se alla dina livshistorier här</h1>
     <?php
       // print all articles
-      // $articleView = (string)
       echo $articleView->getArticlesListByUser($articleData);
-      // echo $articleView->cropStr($articleData['post_content'], 50);
     ?>
   <div>
 <?php

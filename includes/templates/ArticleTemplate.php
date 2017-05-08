@@ -42,10 +42,9 @@ class ArticleTemplate
 						'<a href="myPagePost.php?post_id=' . $article["post_id"] . '">' . $article["title"] . '</a>' .
 					'</h5>' .
 					'<em>Date: ' . $article["date"] . '</em>' .
-					'<p>' . $article["content"] . '</p>' .
+					'<p>' . mb_strimwidth($article["content"], 0, 250, "...") . '</p>' .
 					'<div class="container">' .
 						'<div class="row">' .
-							'<a>' . 'Läs mer' . '</a>' . '&nbsp&nbsp&nbsp&nbsp&nbsp' .
 							'<a>' . 'Redigera' . '</a>' . '&nbsp&nbsp&nbsp&nbsp&nbsp' .
 							'<a>' . 'Ta bort' . '</a>' .
 						'</div>' .
