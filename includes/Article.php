@@ -20,7 +20,7 @@ class Article
 	public function getAllArticlesWithUserNames()
 	{
 		$this->pdo->query(
-			"SELECT post.post_id, post.title, post.content, post.date, user.name
+			"SELECT post.post_id, post.title, post.content, post.date, user.name, post.likes_count
 			 FROM post
 			 INNER JOIN user
 			 ON user.user_id=post.created_by
