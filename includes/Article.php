@@ -23,10 +23,12 @@ class Article
 			"SELECT post.post_id, post.title, post.content, post.date, user.name
 			 FROM post
 			 INNER JOIN user
-			 ON user.user_id=post.created_by");
+			 ON user.user_id=post.created_by
+			 ORDER BY post.date DESC");
 		return $this->pdo->resultset();
 	}
 
+	// get a single article when you click on it
 	public function getSingleArticle($post_id)
 	{
 		$this->pdo->query(
@@ -38,6 +40,7 @@ class Article
 		return $this->pdo->resultset();
 	}
 
+	// add a article
 	public function addArticle() {
 		$title = isset($_POST['title']) ? $_POST['title'] : '';
 		$date = date('Y-m-d H:i:s');
@@ -54,6 +57,27 @@ class Article
 
 		$this->pdo->execute();
 
+	}
+
+	// get all the articles according to the user name
+	public function getAllArticlesByUser() {
+		$this->pdo->query(
+			// ADD VALIDATION BY USER NAME
+			"SELECT post.post_id, post.title, post.content, post.date
+			 FROM post
+			 ORDER BY post.date DESC");
+		return $this->pdo->resultset();
+	}
+
+	// get a single article when you click on it
+	public function getSingleArticleByUser($post_id)
+	{
+		$this->pdo->query(
+			// ADD VALIDATION BY USER NAME
+			"SELECT post.post_id, post.title, post.content, post.date
+			 FROM post
+			 WHERE post_id = $post_id");
+		return $this->pdo->resultset();
 	}
 
 }
