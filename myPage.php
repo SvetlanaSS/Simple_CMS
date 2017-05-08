@@ -12,11 +12,11 @@
   $articleData = $articleModel->getAllArticlesByUser();
 
   include_once "partials/head.php";
-  include_once "partials/navmenu.php";
+  include_once "partials/navmenuLoggedIn.php";
 ?>
   <?php if(isset($_GET['addPostSuccess'])):?>
     <div class="alert alert-info">
-      <p>Ditt inlägg har lagts</p>
+      <p>Ditt inlägg har lagts till</p>
     </div>
   <?php endif;?>
 
@@ -27,7 +27,9 @@
     <h1>Se alla dina livshistorier här</h1>
     <?php
       // print all articles
+      // $articleView = (string)
       echo $articleView->getArticlesListByUser($articleData);
+      // echo $articleView->cropStr($articleData['post_content'], 50);
     ?>
   <div>
 <?php

@@ -13,9 +13,10 @@
   $articleData = $articleModel->getSingleArticleByUser($post_id);
 
   include_once "partials/head.php";
-  include_once "partials/navmenu.php";
+  include_once "partials/navmenuLoggedIn.php";
   ?>
 	<div class="container top_header">
+    <a href="myPage.php">Till alla inlägg</a>
 	  <h1>Se alla dina livshistorier här</h1>
 	  <?php
 	  	echo $articleView->getOneArticleByUser($articleData);
