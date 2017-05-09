@@ -9,10 +9,10 @@
   <div class="row">
     <div class="col-sm-12 col-md-6 col-md-offset-3">
       <a href="myPage.php">Till alla inlägg</a>
-      <h1 class="text-center login-title">Lägga till post</h1>
+      <h1 class="text-center login-title">Redigera post</h1>
       <hr>
       <div class="account-wall">
-      	<?php include_once "partials/add-post-form.php";?>
+      	<?php include_once "partials/edit-post-form.php";?>
       </div>
     </div>
   </div>
