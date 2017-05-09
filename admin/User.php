@@ -16,14 +16,14 @@ class User
 		$userEmail = isset($_POST['userEmail']) ? $_POST['userEmail'] : '';
 		$isAdmin = 0;
 
-		$this->pdo->query('INSERT INTO user (name, email, password, is_admin) VALUES (:name, :email, :password, :is_admin)');		
+		$this->pdo->query('INSERT INTO user (user_name, email, password, is_admin) VALUES (:user_name, :email, :password, :is_admin)');
 
-		$this->pdo->bind(':name', $userName);
+		$this->pdo->bind(':user_name', $userName);
 		$this->pdo->bind(':email', $userEmail);
 		$this->pdo->bind(':password', $password);
 		$this->pdo->bind(':is_admin', $isAdmin);
 
-		$this->pdo->execute();		
+		$this->pdo->execute();
 	}
 
 	public function isRegistredUser()
@@ -32,22 +32,22 @@ class User
 		$userName = isset($_POST['userName']) ?  $_POST['userName'] : '';
 		$userEmail = isset($_POST['userEmail']) ? $_POST['userEmail'] : '';
 
-		$this->pdo->query("SELECT * FROM user WHERE name='$userName'");
+		$this->pdo->query("SELECT * FROM user WHERE user_name='$userName'");
 		$this->pdo->execute();
 		if($this->pdo->rowCount() > 0){
 			$this->setErrorMessage('nameError','Användarnamnet är redan taget. Vänligen välj ett annat');
-			$isRegistred = true;			
+			$isRegistred = true;
 		}
 
 		$this->pdo->query("SELECT * FROM user WHERE email='$userEmail'");
 		$this->pdo->execute();
 		if($this->pdo->rowCount() > 0){
 			$this->setErrorMessage('emailError', 'Email-adressen är redan registrerad. Vänligen välj ett annat');
-			$isRegistred = true;			
-		}		
+			$isRegistred = true;
+		}
 
 		return $isRegistred;
-	}	
+	}
 
 	public function test_input($data) {
 	  $data = trim($data);
@@ -65,12 +65,12 @@ class User
 	    	$email = $this->test_input($_POST[$fieldName]);
 	    	// check if e-mail address is well-formed
 		    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-		      $this->setErrorMessage('emailError', 'Mejladressen är inte giltig. Vänligen prova igen.'); 
+		      $this->setErrorMessage('emailError', 'Mejladressen är inte giltig. Vänligen prova igen.');
 		      $emailErr = true;
 		    }
 		}
 		return $emailErr;
-	}	
+	}
 
 	public function getErrorMessage()
 	{
@@ -80,7 +80,7 @@ class User
 	public function setErrorMessage($key, $message)
 	{
 		$this->errorMessage[$key] = $message;
-	}	
+	}
 }
 
 ?>
