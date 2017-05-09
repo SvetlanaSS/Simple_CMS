@@ -1,8 +1,7 @@
 <?php
   require_once 'includes/error.php';
-
   include_once "partials/head.php";
-  include_once "partials/navmenu.php";
+  include_once 'partials/navmenuLoggedIn.php';
 
 ?>
 <div class="container top_header">

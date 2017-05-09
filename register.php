@@ -13,8 +13,8 @@ $emailError = isset($_GET['emailError']) ? $_GET['emailError'] : '';
     <div class="col-sm-12 col-md-6 col-md-offset-3">
       <h1 class="text-center login-title">Registrera dig för att posta inlägg</h1>
       <hr>
-      <div class="account-wall">     
-      	<?php include_once "partials/register-form.php";?>   
+      <div class="account-wall">
+      	<?php include_once "partials/register-form.php";?>
       </div>
     </div>
   </div>

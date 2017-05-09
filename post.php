@@ -22,8 +22,8 @@
 	  <?php
 	  	echo $articleView->getArticle($articleData);
 	  ?>
-	    </div>  
+	    </div>
 
-  <?php
+<?php
   include_once "partials/footer.php";
 ?>
