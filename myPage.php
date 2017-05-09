@@ -29,7 +29,8 @@
       // print all articles
       echo $articleView->getArticlesListByUser($articleData);
     ?>
-  <div>
+  </div>
+
 <?php
   include_once "partials/footer.php";
 ?>

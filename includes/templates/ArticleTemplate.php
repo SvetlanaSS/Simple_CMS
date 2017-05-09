@@ -1,18 +1,38 @@
 <?php
 class ArticleTemplate
 {
-	public function getArticleList($articles)
+	public function getArticleList($articles, $model)
 	{
 		$postList = '';
 	    foreach ($articles as $article):
-				$postList .= '<div class="article">' .
-					'<h3>' . $article['user_name'] . '</h3>' .
-					'<h5>' .
-		        '<a href="post.php?post_id=' . $article["post_id"] . '">' . $article["title"] . '</a>' .
-		      '</h5>' .
-		      '<em>Date: ' . $article["post_date"] . '</em>' .
-		      '<p>' . $article["content"] . '</p>' .
-					'<hr>' .
+				$like_button ='';
+				/*
+				if(empty($model->getLikesForPost($article["post_id"], 1))){
+					$like_button = '<a class=likes-link" href="admin/like-post.php?post_id=' . $article["post_id"] .'">' .
+			      		'<span class="likes"><i class="fa fa-heart"></i></span>' .
+			      	'</a>';
+				}else{
+					$like_button =
+			      		'<span class="likes"><i class="fa fa-heart"></i></span>';
+				}
+				*/
+				$like_button = '<a class=likes-link" href="admin/like-post.php?post_id=' . $article["post_id"] .'">' .
+			      		'<span class="likes"><i class="fa fa-heart"></i></span>' .
+			      	'</a>';
+
+				$postList .= '<div class="article col-md-7" data-id="' . $article["post_id"] . '">' .
+				'<h2 class="article-title">' .
+		       '<a href="post.php?post_id=' . $article["post_id"] . '">' . $article["title"] . '</a>' .
+		     '</h2>' .
+			    '<div class="meta">' .
+			      '<a class="author-link" href="#"><span class="article-author">' . $article['user_name'] .'</span></a>' .
+			      '<span class="article-date">' . $article["post_date"] . '</span>' .
+			      '<span class="article-author">' . $like_button . '</span>' .
+			      '<span class="like-count">' . $article["likes_count"] . '</span>' .
+			    '</div>' .
+	      	'<div class="article-content">' .
+		      	'<p>' . $article["content"] . '</p>' .
+      		'</div>' .
 		    '</div>';
 		 endforeach;
 		 $postList .= '</div>';
@@ -23,14 +43,28 @@ class ArticleTemplate
 	public function getArticle($article)
 	{
 		$article = $article[0];
-		$chunk = '';
-		$chunk .= '<div class="article">' .
-					'<h3>' . $article['user_name'] . '</h3>' .
-					'<h5>' . $article["title"] . '</h5>' .
-		      '<em>Date:' . $article["post_date"] . '</em>' .
-		      '<p>' .  $article["content"] . '</p>' .
-		    '</div>';
-		return $chunk;
+
+		$like_button = '<a class=likes-link" href="admin/like-post.php?post_id=' . $article["post_id"] . '&page_from=hej">' .
+	      		'<span class="likes"><i class="fa fa-heart"></i></span>' .
+	      	'</a>';
+
+		$postList = '<div class="article col-md-7" data-id="' .$article["post_id"] . '">' .
+		'<h2 class="article-title">' .
+        	'<a href="post.php?post_id=' . $article["post_id"] . '">' . $article["title"] . '</a>' .
+      	'</h2>' .
+	      '<div class="meta">' .
+	      	'<a class="author-link" href="#"><span class="article-author">' . $article['user_name'] .'</span></a>' .
+	      	'<span class="article-date">' . $article["post_date"] . '</span>' .
+	      	'<span class="article-author">' .
+	      	$like_button .
+	      	'<span class="like-count">' . $article["likes_count"] . '</span>' .
+	      '</div>' .
+  		'<div class="article-content">' .
+      	'<p>' . $article["content"] . '</p>' .
+		'</div>' .
+    	'</div></div>';
+
+		 return $postList;
 	}
 
 	public function getArticlesListByUser($articles) {
@@ -75,7 +109,5 @@ class ArticleTemplate
 		    '</div>';
 		return $chunk;
 	}
-
 }
-
 ?>
