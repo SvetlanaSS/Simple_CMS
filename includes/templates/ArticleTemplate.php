@@ -45,6 +45,7 @@ class ArticleTemplate
 					'<p>' . mb_strimwidth($article["content"], 0, 250, "...") . '</p>' .
 					'<div class="container">' .
 						'<div class="row">' .
+							'<a href="myPagePost.php?post_id=' . $article["post_id"] . '">' . 'Läs mer' . '</a>' . '&nbsp&nbsp&nbsp&nbsp&nbsp' .
 							'<a>' . 'Redigera' . '</a>' . '&nbsp&nbsp&nbsp&nbsp&nbsp' .
 							'<a>' . 'Ta bort' . '</a>' .
 						'</div>' .
@@ -75,14 +76,6 @@ class ArticleTemplate
 		return $chunk;
 	}
 
-	// public function subword($str, $length) {
-	// 	$new_str = substr($str, 0, strpos($str, " ", $length) ?: $length);
-	// 	return (strlen($new_str) > $length) ? $new_str."..." : $new_str;
-	// }
-	//
-	// public function cropStr($str, $size){
-	//   return mb_substr($str,0,mb_strrpos(mb_substr($str,0,$size,'utf-8'),' ',utf-8),'utf-8');
-	// }
 }
 
 ?>
