@@ -106,5 +106,26 @@ class ArticleTemplate
 		    '</div>';
 		return $chunk;
 	}
+
+	public function getDataPost($article) {
+		$article = $article[0];
+		$postData =
+			'<form class="form-signin" action="admin/edit-post.php" method="POST" name="editpostform">' .
+				'<div class="form-group">' .
+					'<label class="control-label" for="title">Titel *</label>' .
+					'<input type="text" class="form-control" name="title" autofocus required value="' . $article["title"] . '"' . '</input>' .
+				'</div>' .
+				'<div class="form-group">' .
+					'<label class="control-label" for="content">Text *</label>' .
+					'<textarea class="form-control" name="content" required>' . $article["content"] . '</textarea>' .
+				'</div>' .
+				'<div class="form-group">' .
+					'<input class="btn btn-primary btn-block" type="submit" value="Redigera post"></input>' .
+				'</div>' .
+			'</form>';
+
+		return $postData;
+	}
+
 }
 ?>

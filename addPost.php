@@ -12,7 +12,7 @@
       <h1 class="text-center login-title">Lägga till post</h1>
       <hr>
       <div class="account-wall">
-      	<?php include_once "partials/add-post-form.php";?>
+        <?php include_once "partials/add-post-form.php";?>
       </div>
     </div>
   </div>
