@@ -37,9 +37,13 @@ class ArticleTemplate
 	{
 		$article = $article[0];
 
-		$like_button = '<a class=likes-link" href="admin/like-post.php?post_id=' . $article["post_id"] . '&page_from=hej">' .
-	      		'<span class="likes"><i class="fa fa-heart"></i></span>' .
-	      	'</a>';
+		if(isset($_SESSION['loggedIn'])){
+			$like_button = '<a class=likes-link" href="admin/like-post.php?post_id=' . $article["post_id"] .'">' .
+		      		'<span class="likes"><i class="fa fa-heart"></i></span>' .
+		      	'</a>';
+		}else{
+			$like_button = '<span class="likes"><i class="fa fa-heart"></i></span>';
+		}
 
 		$postList = '<div class="article col-md-7" data-id="' .$article["post_id"] . '">' .
 		'<h2 class="article-title">' .
