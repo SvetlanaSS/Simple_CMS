@@ -21,7 +21,7 @@
     //print_r($_SESSION);
     include_once "partials/navmenuLoggedIn.php";     
     $user_name = isset($_SESSION['username']) ? $_SESSION['username'] : '';
-    $user_welcome_message = isset($_SESSION['loggedIn']) ? '<h5>Welcome ' .  $user_name . '</h5>' : '';    
+    $user_welcome_message = isset($_SESSION['loggedIn']) ? '<h5>Välkommen ' .  $user_name . '</h5>' : '';    
   }
 ?>
 

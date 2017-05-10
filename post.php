@@ -20,10 +20,10 @@
   ?>
 	<div class="container top_header">
 	  <h1>Dela dina livshistorier här</h1>
-	  <?php
-	  	echo $articleView->getArticle($articleData);
-	  ?>
-	    </div>
+    <div class="row">
+	  <?php echo $articleView->getArticle($articleData);?>
+    </div>
+  </div>
 
 <?php
   include_once "partials/footer.php";
