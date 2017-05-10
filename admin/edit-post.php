@@ -1,9 +1,3 @@
-
-
-
-
-
-
 <?php
   require_once '../includes/Database.php';
   require_once '../includes/error.php';

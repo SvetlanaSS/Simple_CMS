@@ -80,8 +80,63 @@ class Article
 
 	// edit the article according to the user name
 	public function editArticleByUser() {
+		$id = isset($_POST['post_id']) ? $_POST['post_id'] : '';
+		$title = isset($_POST['title']) ? $_POST['title'] : '';
+		$date = date('Y-m-d H:i:s');
+		$content = isset($_POST['content']) ? $_POST['content'] : '';
+		$user_name = 1; // get user_id from session
 
+		$this->pdo->query(
+			"UPDATE post SET title = $title, post_date = $date, content = $content, created_by = $user_name WHERE post_id = $id");
+
+		$this->pdo->bind(':title', $title);
+		$this->pdo->bind(':content', $content);
+		// $this->pdo->bind(':created_by', $user_name);
+
+		$this->pdo->execute();
 	}
+
+
+
+	/**
+  * Вставляем текущий объект статьи в базу данных, устанавливаем его свойства.
+  */
+  public function insert() {
+    // Есть у объекта статьи ID?
+    if ( !is_null( $this->id ) ) trigger_error ( "Article::insert(): Attempt to insert an Article object that already has its ID property set (to $this->id).", E_USER_ERROR );
+    // Вставляем статью
+    $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+    $sql = "INSERT INTO articles ( publicationDate, title, summary, content ) VALUES ( FROM_UNIXTIME(:publicationDate), :title, :summary, :content )";
+    $st = $conn->prepare ( $sql );
+    $st->bindValue( ":publicationDate", $this->publicationDate, PDO::PARAM_INT );
+    $st->bindValue( ":title", $this->title, PDO::PARAM_STR );
+    $st->bindValue( ":summary", $this->summary, PDO::PARAM_STR );
+    $st->bindValue( ":content", $this->content, PDO::PARAM_STR );
+    $st->execute();
+    $this->id = $conn->lastInsertId();
+    $conn = null;
+  }
+
+
+/**
+ * Обновляем текущий объект статьи в базе данных
+ */
+ public function update() {
+	 // Есть ли у объекта статьи ID?
+	 if ( is_null( $this->id ) ) trigger_error ( "Article::update(): Attempt to update an Article object that does not have its ID property set.", E_USER_ERROR );
+	 // Обновляем статью
+	 $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
+	 $sql = "UPDATE articles SET publicationDate=FROM_UNIXTIME(:publicationDate), title=:title, summary=:summary, content=:content WHERE id = :id";
+	 $st = $conn->prepare ( $sql );
+	 $st->bindValue( ":publicationDate", $this->publicationDate, PDO::PARAM_INT );
+	 $st->bindValue( ":title", $this->title, PDO::PARAM_STR );
+	 $st->bindValue( ":summary", $this->summary, PDO::PARAM_STR );
+	 $st->bindValue( ":content", $this->content, PDO::PARAM_STR );
+	 $st->bindValue( ":id", $this->id, PDO::PARAM_INT );
+	 $st->execute();
+	 $conn = null;
+ }
+
 
 	// delete the article according to the user name
 	public function deleteArticleByUser() {
