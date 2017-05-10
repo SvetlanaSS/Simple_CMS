@@ -14,7 +14,7 @@
       </div>
       <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right my-link">
-          <li><a href="logout.php" title="Logout">Logga ut</a></li>
+          <li><a href="admin/logout-logic.php" title="Logout">Logga ut</a></li>
           <li><a href="myPage.php" title="Page">Min sida</a></li>
         </ul>
       </div>

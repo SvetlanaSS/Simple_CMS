@@ -1,5 +1,5 @@
 <?php
-  //require_once 'includes/session.php';
+  require_once 'includes/session.php';
   require_once 'includes/error.php';
   require_once 'includes/Database.php';
   require_once 'includes/Article.php';
@@ -13,10 +13,20 @@
   $articleData = $articleModel->getAllArticlesWithUserNames();
 
   include_once "partials/head.php";
-  include_once "partials/navmenu.php";
+
+  $user_welcome_message = '';
+  if (empty($_SESSION)){    
+    include_once "partials/navmenu.php";  
+  }else{
+    //print_r($_SESSION);
+    include_once "partials/navmenuLoggedIn.php";     
+    $user_name = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+    $user_welcome_message = isset($_SESSION['loggedIn']) ? '<h5>Welcome ' .  $user_name . '</h5>' : '';    
+  }
 ?>
 
   <div class="container top_header">
+    <?php echo  $user_welcome_message;?>
     <h1>Dela dina livshistorier här</h1>
     <div class="row">
       <?php

@@ -5,37 +5,30 @@ class ArticleTemplate
 	{
 		$postList = '';
 	    foreach ($articles as $article):
-				$like_button ='';
-				/*
-				if(empty($model->getLikesForPost($article["post_id"], 1))){
-					$like_button = '<a class=likes-link" href="admin/like-post.php?post_id=' . $article["post_id"] .'">' .
-			      		'<span class="likes"><i class="fa fa-heart"></i></span>' .
-			      	'</a>';
-				}else{
-					$like_button =
-			      		'<span class="likes"><i class="fa fa-heart"></i></span>';
-				}
-				*/
+			$like_button ='';
+			if(isset($_SESSION['loggedIn'])){
 				$like_button = '<a class=likes-link" href="admin/like-post.php?post_id=' . $article["post_id"] .'">' .
 			      		'<span class="likes"><i class="fa fa-heart"></i></span>' .
 			      	'</a>';
+			}else{
+				$like_button = '<span class="likes"><i class="fa fa-heart"></i></span>';
+			}
 
-				$postList .= '<div class="article col-md-7" data-id="' . $article["post_id"] . '">' .
+			$postList .= '<div class="article col-md-7" data-id="' . $article["post_id"] . '">' .
 				'<h2 class="article-title">' .
-		       '<a href="post.php?post_id=' . $article["post_id"] . '">' . $article["title"] . '</a>' .
-		     '</h2>' .
+	       		'<a href="post.php?post_id=' . $article["post_id"] . '">' . $article["title"] . '</a>' .
+	     		'</h2>' .
 			    '<div class="meta">' .
 			      '<a class="author-link" href="#"><span class="article-author">' . $article['user_name'] .'</span></a>' .
 			      '<span class="article-date">' . $article["post_date"] . '</span>' .
 			      '<span class="article-author">' . $like_button . '</span>' .
 			      '<span class="like-count">' . $article["likes_count"] . '</span>' .
 			    '</div>' .
-	      	'<div class="article-content">' .
-		      	'<p>' . $article["content"] . '</p>' .
-      		'</div>' .
-		    '</div>';
+		      	'<div class="article-content">' .
+			      	'<p>' . $article["content"] . '</p>' .
+		  		'</div>' .
+	    	'</div>';
 		 endforeach;
-		 $postList .= '</div>';
 
 		 return $postList;
 	}
