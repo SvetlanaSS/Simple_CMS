@@ -6,10 +6,10 @@
       <div class="account-wall">
         <form class="form-signin" action="login.php" method="post" name="registerform">
           <div class="form-group">
-            <input type="login" class="form-control" placeholder="Användarnamn" required autofocus>
+            <input type="login" class="form-control" placeholder="Användarnamn" name="username" required autofocus>
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" placeholder="Lösenord" required autofocus>
+            <input type="password" class="form-control" placeholder="Lösenord" name="password" required autofocus>
           </div>
           <hr>
           <div class="form-group">
