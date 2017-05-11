@@ -6,6 +6,5 @@ include_once "login.php";
 $database = new Database();
 $logIn = new LogIn($database);
 $logIn->logInUser();
-//print_r($logIn->test());
 
 ?>

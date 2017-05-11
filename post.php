@@ -1,4 +1,5 @@
 <?php
+  require_once 'includes/session.php';
   require_once 'includes/error.php';
   require_once 'includes/Database.php';
   require_once 'includes/Article.php';
@@ -8,7 +9,7 @@
   $articleModel = new Article( $database );
   $articleView = new ArticleTemplate();
 
-	$post_id = $_GET['post_id'];
+  $post_id = $_GET['post_id'];
 
   $articleData = $articleModel->getSingleArticle($post_id);
   //var_dump($articleData);
@@ -19,10 +20,10 @@
   ?>
 	<div class="container top_header">
 	  <h1>Dela dina livshistorier här</h1>
-	  <?php
-	  	echo $articleView->getArticle($articleData);
-	  ?>
-	    </div>
+    <div class="row">
+	  <?php echo $articleView->getArticle($articleData);?>
+    </div>
+  </div>
 
 <?php
   include_once "partials/footer.php";

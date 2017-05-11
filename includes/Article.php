@@ -19,10 +19,11 @@ class Article
 	public function getAllArticlesWithUserNames()
 	{
 		$this->pdo->query(
-			"SELECT post.post_id, post.title, post.content, post.post_date, user.user_name, post.likes_count
+			"SELECT post.post_id, post.title, post.content, DATE_FORMAT(post.post_date, '%Y %m %d') AS 'post_date', user.user_name, post.likes_count
 			 FROM post
 			 INNER JOIN user
-			 ON user.user_id=post.created_by");
+			 ON user.user_id=post.created_by
+			 ORDER BY post.post_date DESC");
 		return $this->pdo->resultset();
 	}
 
@@ -30,7 +31,7 @@ class Article
 	public function getSingleArticle($post_id)
 	{
 		$this->pdo->query(
-			"SELECT post.post_id, post.title, post.content, post.post_date, user.user_name, post.likes_count
+			"SELECT post.post_id, post.title, post.content, DATE_FORMAT(post.post_date, '%Y %m %d') AS 'post_date', user.user_name, post.likes_count
 			 FROM post
 			 INNER JOIN user
 			 ON user.user_id=post.created_by
@@ -43,15 +44,16 @@ class Article
 		$title = isset($_POST['title']) ? $_POST['title'] : '';
 		$date = date('Y-m-d H:i:s');
 		$content = isset($_POST['content']) ? $_POST['content'] : '';
-		$user_name = 1; // get user_id from session
+	 	$user_id = isset($_POST['user']) ? $_POST['user'] : '';
+		//$user_id = 1; // get user_id from session
 
 		$this->pdo->query(
 			"INSERT INTO post (title, post_date, content, created_by)
-			 VALUES ('$title', '$date', '$content', '$user_name')");
+			 VALUES ('$title', '$date', '$content', '$user_id')");
 
 		$this->pdo->bind(':title', $title);
 		$this->pdo->bind(':content', $content);
-		// $this->pdo->bind(':created_by', $user_name);
+		$this->pdo->bind(':created_by', $user_id);
 
 		$this->pdo->execute();
 	}

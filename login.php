@@ -13,7 +13,7 @@
   <?php endif;?>  
 
 <?php
-  include_once "partials/login.php";
+  include_once "partials/login-form.php";
 
   include_once "partials/footer.php";
 ?>

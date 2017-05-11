@@ -7,6 +7,13 @@
             <label class="control-label" for="content">Text *</label>
             <textarea class="form-control" name="content" required></textarea>
           </div>
+          <?php
+          if (empty($_SESSION)){    
+          }else{
+            //print_r($_SESSION);?>
+            <input type="hidden" name="user" value="<?php echo $_SESSION['user_id'];?>">   
+          <?php  
+          }?>
           <div class="form-group">
             <input class="btn btn-primary btn-block" type="submit" value="Lägga till post"></input>
           </div>
