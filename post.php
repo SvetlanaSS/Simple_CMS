@@ -9,7 +9,7 @@
   $articleModel = new Article( $database );
   $articleView = new ArticleTemplate();
 
-	$post_id = $_GET['post_id'];
+  $post_id = $_GET['post_id'];
 
   $articleData = $articleModel->getSingleArticle($post_id);
   //var_dump($articleData);
