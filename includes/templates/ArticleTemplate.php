@@ -78,10 +78,9 @@ class ArticleTemplate
 						'<div class="row">' .
 							'<a href="myPagePost.php?post_id=' . $article["post_id"] . '">' . 'Läs mer' . '</a>' . '&nbsp&nbsp&nbsp&nbsp&nbsp' .
 							'<a href="editPost.php?post_id=' . $article["post_id"] . '">' . 'Redigera' . '</a>' . '&nbsp&nbsp&nbsp&nbsp&nbsp' .
-							'<a>' . 'Ta bort' . '</a>' .
+							'<a href="deletePost.php?post_id=' . $article["post_id"] . '">' . 'Ta bort' . '</a>' .
 						'</div>' .
 					'</div>' .
-					'<hr>' .
 				'</div>';
 		 endforeach;
 		 $postList .= '</div>';
@@ -110,7 +109,7 @@ class ArticleTemplate
 	public function getDataPost($article) {
 		$article = $article[0];
 		$postData =
-			'<form class="form-signin" action="admin/edit-post.php" method="POST" name="editpostform">' .
+			'<form class="form-signin" action="admin/edit-post.php?action=edit&post_id="' . $_GET['post_id'] . 'method="POST" name="editpostform">' .
 				'<div class="form-group">' .
 					'<label class="control-label" for="title">Titel *</label>' .
 					'<input type="text" class="form-control" name="title" autofocus required value="' . $article["title"] . '"' . '</input>' .

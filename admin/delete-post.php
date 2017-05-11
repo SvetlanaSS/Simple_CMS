@@ -16,7 +16,13 @@
   $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\admin');
   $redirect = '';
 
-  $articleModel->editArticleByUser($post_id);
-  $redirect = 'myPage.php?editPostSuccess=true';
-  header("Location: http://$host$uri/$redirect");
+  if(true) {
+    $articleModel->deleteArticleByUser($post_id);
+    $redirect = 'myPage.php?deletePostSuccess=true';
+    header("Location: http://$host$uri/$redirect");
+  } else if(false) {
+    $redirect = 'myPage.php?deletePostSuccess=true';
+    header("Location: http://$host$uri/$redirect");
+  }
+
 ?>

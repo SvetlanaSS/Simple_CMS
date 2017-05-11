@@ -21,6 +21,18 @@
     </div>
   <?php endif;?>
 
+  <?php if(isset($_GET['editPostSuccess'])):?>
+    <div class="alert alert-info">
+      <p>Ditt inlägg har redigerats</p>
+    </div>
+  <?php endif;?>
+
+  <?php if(isset($_GET['deletePostSuccess'])):?>
+    <div class="alert alert-info">
+      <p>Ditt inlägg togs bort</p>
+    </div>
+  <?php endif;?>
+
   <div class="container top_header">
     <form method="post" action="addPost.php">
       <input class="btn btn-primary" type="submit" value="Lägga till post" name="addnewpost"></input>
