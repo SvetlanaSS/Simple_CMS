@@ -7,7 +7,7 @@ class ArticleTemplate
 	    foreach ($articles as $article):
 			$like_button ='';
 			if(isset($_SESSION['loggedIn'])){
-				$like_button = '<a class=likes-link" href="admin/like-post.php?post_id=' . $article["post_id"] .'">' .
+				$like_button = '<a class="likes-link" href="admin/like-post.php?post_id=' . $article["post_id"] . '" data-id="' . $article["post_id"] .'">' .
 			      		'<span class="likes"><i class="fa fa-heart"></i></span>' .
 			      	'</a>';
 			}else{
@@ -38,9 +38,9 @@ class ArticleTemplate
 		$article = $article[0];
 
 		if(isset($_SESSION['loggedIn'])){
-			$like_button = '<a class=likes-link" href="admin/like-post.php?post_id=' . $article["post_id"] .'">' .
-		      		'<span class="likes"><i class="fa fa-heart"></i></span>' .
-		      	'</a>';
+				$like_button = '<a class="likes-link" href="admin/like-post.php?post_id=' . $article["post_id"] . '" data-id="' . $article["post_id"] .'">' .
+			      		'<span class="likes"><i class="fa fa-heart"></i></span>' .
+			      	'</a>';
 		}else{
 			$like_button = '<span class="likes"><i class="fa fa-heart"></i></span>';
 		}
