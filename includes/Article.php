@@ -79,20 +79,9 @@ class Article
 	}
 
 	// edit the article according to the user name
-	public function editArticleByUser($post_id) {
-		$id = isset($_POST['post_id']) ? $_POST['post_id'] : '';
-		$title = isset($_POST['title']) ? $_POST['title'] : '';
+	public function editArticleByUser($post_id, $title, $content) {
 		$date = date('Y-m-d H:i:s');
-		$content = isset($_POST['content']) ? $_POST['content'] : '';
-		$user_id = 1; // get user_id from session
-
-		$this->pdo->query(
-			"UPDATE post SET title = '$title', post_date = '$date', content = '$content', created_by = '$user_id' WHERE post_id = '$id'");
-
-		$this->pdo->bind(':title', $title);
-		$this->pdo->bind(':content', $content);
-		$this->pdo->bind(':created_by', $user_id);
-
+		$this->pdo->query("UPDATE post SET title='$title', post_date='$date', content='$content' WHERE post_id='$post_id'");
 		$this->pdo->execute();
 	}
 

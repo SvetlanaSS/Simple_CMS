@@ -109,17 +109,17 @@ class ArticleTemplate
 	public function getDataPost($article) {
 		$article = $article[0];
 		$postData =
-			'<form class="form-signin" action="admin/edit-post.php?action=edit&post_id="' . $_GET['post_id'] . 'method="POST" name="editpostform">' .
+			'<form class="form-signin" action="admin/edit-post.php?post_id=' . $article["post_id"]. '"' . 'method="post" name="editpostform">' .
 				'<div class="form-group">' .
 					'<label class="control-label" for="title">Titel *</label>' .
-					'<input type="text" class="form-control" name="title" autofocus required value="' . $article["title"] . '"' . '</input>' .
+					'<input type="text" class="form-control" name="title" autofocus required value="' . $article["title"] . '"' .
 				'</div>' .
 				'<div class="form-group">' .
 					'<label class="control-label" for="content">Text *</label>' .
 					'<textarea class="form-control" name="content" required>' . $article["content"] . '</textarea>' .
 				'</div>' .
 				'<div class="form-group">' .
-					'<input class="btn btn-primary btn-block" type="submit" value="Redigera post"></input>' .
+					'<input class="btn btn-primary btn-block" type="submit" value="Uppdatera post" name="submit">' .
 				'</div>' .
 			'</form>';
 
