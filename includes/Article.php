@@ -87,8 +87,17 @@ class Article
 
 	// delete the article according to the user name
 	public function deleteArticleByUser($post_id) {
+		// $date = date('Y-m-d H:i:s');
+		$this->pdo->query("DELETE FROM post WHERE post_id='$post_id'");
 
+		$this->pdo->execute();
 	}
+
+	// ( "DELETE FROM articles WHERE id = :id LIMIT 1" )
+	//
+	// ("DELETE FROM articles WHERE id='%d'", $id)
+
+
 
 	// gets likes for a post filtered by user id
 	public function getLikesForPost($post_id, $user_id){
@@ -111,7 +120,7 @@ class Article
 			WHERE post.post_id = $post_id
 			");
 		return $this->pdo->resultset();
-	}	
+	}
 
 	// adds a like to a post and increments like_count in post table
 	public function addLikeToPost($post_id, $user_id){
