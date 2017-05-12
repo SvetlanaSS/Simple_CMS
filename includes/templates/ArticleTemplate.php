@@ -64,16 +64,31 @@ class ArticleTemplate
 		 return $postList;
 	}
 
-	public function getArticlesListByUser($articles) {
+	public function getArticlesListByUser($articles, $model) {
 		$postList = '';
-			foreach ($articles as $article):
-				// ADD VALIDATION BY USER NAME
-				$postList .= '<div class="article">' .
-					'<h5>' .
+		foreach ($articles as $article):
+			$like_button ='';
+			if(isset($_SESSION['loggedIn'])){
+				$like_button = '<a class="likes-link" href="admin/like-post.php?post_id=' . $article["post_id"] . '" data-id="' . $article["post_id"] .'">' .
+								'<span class="likes"><i class="fa fa-heart"></i></span>' .
+							'</a>';
+			}else{
+				$like_button = '<span class="likes"><i class="fa fa-heart"></i></span>';
+			}
+
+			$postList .=
+				'<div class="article col-md-7" data-id="' . $article["post_id"] . '">' .
+					'<h2 class="article-title">' .
 						'<a href="myPagePost.php?post_id=' . $article["post_id"] . '">' . $article["title"] . '</a>' .
-					'</h5>' .
-					'<em>Date: ' . $article["post_date"] . '</em>' .
-					'<p>' . mb_strimwidth($article["content"], 0, 250, "...") . '</p>' .
+					'</h2>' .
+					'<div class="meta">' .
+						'<span class="article-date">' . $article["post_date"] . '</span>' .
+						'<span class="article-author">' . $like_button . '</span>' .
+						'<span class="like-count">' . $article["likes_count"] . '</span>' .
+					'</div>' .
+					'<div class="article-content">' .
+						'<p>' . mb_strimwidth($article["content"], 0, 250, "...") . '</p>' .
+					'</div>' .
 					'<div class="container">' .
 						'<div class="row">' .
 							'<a href="myPagePost.php?post_id=' . $article["post_id"] . '">' . 'Läs mer' . '</a>' . '&nbsp&nbsp&nbsp&nbsp&nbsp' .
@@ -82,29 +97,44 @@ class ArticleTemplate
 						'</div>' .
 					'</div>' .
 				'</div>';
-		 endforeach;
-		 $postList .= '</div>';
-
-		 return $postList;
+		endforeach;
+		return $postList;
 	}
 
 	public function getOneArticleByUser($article) {
 		// ADD VALIDATION BY USER NAME
 		$article = $article[0];
-		$chunk = '';
-		$chunk .= '<div class="article">' .
-					'<h5>' . $article["title"] . '</h5>' .
-		      '<em>Date:' . $article["post_date"] . '</em>' .
-		      '<p>' .  $article["content"] . '</p>' .
-					'<div class="container">' .
-						'<div class="row">' .
-							'<a>' . 'Redigera' . '</a>' . '&nbsp&nbsp&nbsp&nbsp&nbsp' .
-							'<a>' . 'Ta bort' . '</a>' .
-						'</div>' .
+		if(isset($_SESSION['loggedIn'])){
+				$like_button = '<a class="likes-link" href="admin/like-post.php?post_id=' . $article["post_id"] . '" data-id="' . $article["post_id"] .'">' .
+			      		'<span class="likes"><i class="fa fa-heart"></i></span>' .
+			      	'</a>';
+		}else{
+			$like_button = '<span class="likes"><i class="fa fa-heart"></i></span>';
+		}
+
+		$postList =
+			'<div class="article col-md-7" data-id="' .$article["post_id"] . '">' .
+				'<h2 class="article-title">' .
+					'<a href="myPagePost.php?post_id=' . $article["post_id"] . '">' . $article["title"] . '</a>' .
+				'</h2>' .
+				'<div class="meta">' .
+					'<span class="article-date">' . $article["post_date"] . '</span>' .
+					'<span class="article-author">' . $like_button . '</span>' .
+					'<span class="like-count">' . $article["likes_count"] . '</span>' .
+				'</div>' .
+				'<div class="article-content">' .
+					'<p>' . $article["content"] . '</p>' .
+				'</div>' .
+				'<div class="container">' .
+					'<div class="row">' .
+						'<a>' . 'Redigera' . '</a>' . '&nbsp&nbsp&nbsp&nbsp&nbsp' .
+						'<a>' . 'Ta bort' . '</a>' .
 					'</div>' .
-		    '</div>';
-		return $chunk;
+				'</div>' .
+			'</div>';
+		return $postList;
 	}
+
 
 	public function getDataPost($article) {
 		$article = $article[0];

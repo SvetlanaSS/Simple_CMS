@@ -62,7 +62,7 @@ class Article
 	public function getAllArticlesByUser() {
 		$this->pdo->query(
 			// ADD VALIDATION BY USER NAME
-			"SELECT post.post_id, post.title, post.content, post.post_date
+			"SELECT post.post_id, post.title, post.content, DATE_FORMAT(post.post_date, '%Y %m %d') AS 'post_date', post.likes_count
 			 FROM post
 			 ORDER BY post.post_date DESC");
 		return $this->pdo->resultset();
@@ -72,7 +72,7 @@ class Article
 	public function getSingleArticleByUser($post_id) {
 		$this->pdo->query(
 			// ADD VALIDATION BY USER NAME
-			"SELECT post.post_id, post.title, post.content, post.post_date
+			"SELECT post.post_id, post.title, post.content, DATE_FORMAT(post.post_date, '%Y %m %d') AS 'post_date', post.likes_count
 			 FROM post
 			 WHERE post_id = $post_id");
 		return $this->pdo->resultset();

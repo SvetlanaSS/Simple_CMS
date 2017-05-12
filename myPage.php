@@ -40,7 +40,7 @@
     <h1>Se alla dina livshistorier här</h1>
     <?php
       // print all articles
-      echo $articleView->getArticlesListByUser($articleData);
+      echo $articleView->getArticlesListByUser($articleData, $articleModel);
     ?>
   </div>
 
