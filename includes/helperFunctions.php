@@ -1,4 +1,26 @@
 <?php
+
+/**
+ * 
+ */
+function get_data_from_api($url, $query_string=''){
+	//var_dump($url . $query_string);
+	$ch = curl_init(); //initiate cURL request
+	curl_setopt($ch, CURLOPT_URL, $url . $query_string); //set url
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); //return content
+	$data = curl_exec($ch); //execute the request
+	curl_close($ch); //close the request
+	//var_dump($data);
+	return $data; //return the data
+}
+
+/**
+ * 
+ */
+function get_array_from_json($response){
+	return json_decode($response, true);
+}
+
 /**
  * 
  */

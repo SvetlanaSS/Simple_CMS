@@ -19,7 +19,7 @@ class Article
 	public function getAllArticlesWithUserNames()
 	{
 		$this->pdo->query(
-			"SELECT post.post_id, post.title, post.content, DATE_FORMAT(post.post_date, '%Y %m %d') AS 'post_date', user.user_name, post.likes_count
+			"SELECT post.post_id, post.title, post.content, DATE_FORMAT(post.post_date, '%Y %m %d') AS 'post_date', user.user_name, post.likes_count, user.user_id
 			 FROM post
 			 INNER JOIN user
 			 ON user.user_id=post.created_by
@@ -101,6 +101,15 @@ class Article
 			AND post.post_id = $post_id");
 		return $this->pdo->resultset();
 	}
+
+	public function getLikesCountForPost($post_id){
+		$this->pdo->query(
+			"SELECT post.likes_count
+			FROM post
+			WHERE post.post_id = $post_id
+			");
+		return $this->pdo->resultset();
+	}	
 
 	// adds a like to a post and increments like_count in post table
 	public function addLikeToPost($post_id, $user_id){
