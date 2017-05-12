@@ -24,8 +24,10 @@
       <p>Ditt inlägg kommer att tas bort. Är du säkert på att du vill ta bort inlägget?</p>
       <div class="text-center login-title">
         <form method="post" action="admin/delete-post.php">
-          <input class="btn btn-info" type="submit" value="Ja, ta bort" name="deletepost" onclick="if(confirm) return true"></input>
-          <input class="btn btn-info" type="submit" value="Nej" name="cancel" onclick="if(confirm) return false"></input>
+          <a class="btn btn-info" href="admin/delete-post.php">ok</a>
+          <a class="btn btn-info" href="myPage.php">cancel</a>
+          <!-- <input class="btn btn-info" type="submit" value="Ja, ta bort" name="deletepost" onclick="if(confirm) return true"></input> -->
+          <!-- <input class="btn btn-info" type="submit" value="Nej" name="cancel" onclick="if(confirm) return false"></input> -->
         </form>
       </div>
     </div>
