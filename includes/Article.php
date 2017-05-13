@@ -62,7 +62,7 @@ class Article
 	public function getAllArticlesByUser() {
 		$this->pdo->query(
 			// ADD VALIDATION BY USER NAME
-			"SELECT post.post_id, post.title, post.content, post.post_date
+			"SELECT post.post_id, post.title, post.content, DATE_FORMAT(post.post_date, '%Y %m %d') AS 'post_date', post.likes_count
 			 FROM post
 			 ORDER BY post.post_date DESC");
 		return $this->pdo->resultset();
@@ -72,21 +72,32 @@ class Article
 	public function getSingleArticleByUser($post_id) {
 		$this->pdo->query(
 			// ADD VALIDATION BY USER NAME
-			"SELECT post.post_id, post.title, post.content, post.post_date
+			"SELECT post.post_id, post.title, post.content, DATE_FORMAT(post.post_date, '%Y %m %d') AS 'post_date', post.likes_count
 			 FROM post
 			 WHERE post_id = $post_id");
 		return $this->pdo->resultset();
 	}
 
 	// edit the article according to the user name
-	public function editArticleByUser() {
-
+	public function editArticleByUser($post_id, $title, $content) {
+		$date = date('Y-m-d H:i:s');
+		$this->pdo->query("UPDATE post SET title='$title', post_date='$date', content='$content' WHERE post_id='$post_id'");
+		$this->pdo->execute();
 	}
 
 	// delete the article according to the user name
-	public function deleteArticleByUser() {
+	public function deleteArticleByUser($post_id) {
+		// $date = date('Y-m-d H:i:s');
+		$this->pdo->query("DELETE FROM post WHERE post_id='$post_id'");
 
+		$this->pdo->execute();
 	}
+
+	// ( "DELETE FROM articles WHERE id = :id LIMIT 1" )
+	//
+	// ("DELETE FROM articles WHERE id='%d'", $id)
+
+
 
 	// gets likes for a post filtered by user id
 	public function getLikesForPost($post_id, $user_id){
@@ -109,7 +120,7 @@ class Article
 			WHERE post.post_id = $post_id
 			");
 		return $this->pdo->resultset();
-	}	
+	}
 
 	// adds a like to a post and increments like_count in post table
 	public function addLikeToPost($post_id, $user_id){

@@ -13,13 +13,10 @@
 
   if(isset($_POST['submit'])){
     $post_id = isset($_GET['post_id']) ? $_GET['post_id'] : '';
-    $title = isset($_POST['title']) ? $_POST['title'] : '';
-    $content = isset($_POST['content']) ? $_POST['content'] : '';
-    $articleModel->editArticleByUser($post_id, $title, $content);
-    $redirect = 'myPage.php?editPostSuccess=true';
+    $articleModel->deleteArticleByUser($post_id);
+    $redirect = 'myPage.php?deletePostSuccess=true';
     header("Location: http://$host$uri/$redirect");
   } else {
-    echo "Error!";
+    echo "Error bla bla!";
   }
-
 ?>

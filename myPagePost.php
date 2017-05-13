@@ -9,20 +9,20 @@
   $articleModel = new Article($database);
   $articleView = new ArticleTemplate();
 
-	$post_id = $_GET['post_id'];
+  $post_id = $_GET['post_id'];
 
   $articleData = $articleModel->getSingleArticleByUser($post_id);
 
   include_once "partials/head.php";
   include_once "partials/navmenu.php";
   ?>
-	<div class="container top_header">
+  <div class="container top_header">
     <a href="myPage.php">Till alla inlägg</a>
-	  <h1>Se alla dina livshistorier här</h1>
-	  <?php
-	  	echo $articleView->getOneArticleByUser($articleData);
-	  ?>
-	    </div>
+    <h1>Se alla dina livshistorier här</h1>
+    <?php
+      echo $articleView->getOneArticleByUser($articleData);
+    ?>
+  </div>
 
   <?php
   include_once "partials/footer.php";

@@ -19,6 +19,7 @@
   include_once "partials/navmenu.php";
   ?>
 	<div class="container top_header">
+    <a href="index.php">Till alla inlägg</a>
 	  <h1>Dela dina livshistorier här</h1>
     <div class="row">
 	  <?php echo $articleView->getArticle($articleData);?>
