@@ -23,12 +23,14 @@
       <h3 class="text-center login-title">Ta bort inlägg</h3>
       <p>Ditt inlägg kommer att tas bort. Är du säkert på att du vill ta bort inlägget?</p>
       <div class="text-center login-title">
-        <!-- '<form class="form-signin" action="admin/edit-post.php?post_id=' . $article["post_id"]. '"' . 'method="post" name="editpostform">' . -->
-        <form method="post" action="admin/edit-post.php">
-          <!-- <input class="btn btn-info" type="submit" value="Ja, ta bort"
-          formaction="admin/delete-post.php?post_id=' . $article["post_id"] . '"' . 'name="submit"> -->
-          <input class="btn btn-info" type="submit" value="Ja, ta bort"
-          formaction="admin/delete-post.php?post_id=<?php $article['post_id']?>" name="submit">
+        <form method="post" action="#">
+          <input
+           class="btn btn-info"
+           type="submit"
+           value="Ja, ta bort"
+           formaction="admin/delete-post.php?post_id=<?php echo $post_id ?>"
+           name="submit"
+          >
           <a class="btn btn-info" href="myPage.php">Nej</a>
         </form>
       </div>
