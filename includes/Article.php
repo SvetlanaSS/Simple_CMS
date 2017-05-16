@@ -59,11 +59,12 @@ class Article
 	}
 
 	// get all the articles according to the user name
-	public function getAllArticlesByUser() {
+	public function getAllArticlesByUser($user_id) {
 		$this->pdo->query(
 			// ADD VALIDATION BY USER NAME
 			"SELECT post.post_id, post.title, post.content, DATE_FORMAT(post.post_date, '%Y %m %d') AS 'post_date', post.likes_count
 			 FROM post
+			 WHERE post.created_by = $user_id
 			 ORDER BY post.post_date DESC");
 		return $this->pdo->resultset();
 	}

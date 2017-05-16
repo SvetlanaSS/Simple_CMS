@@ -4,7 +4,16 @@ class ArticleTemplate
 	public function getArticleList($articles, $model)
 	{
 		$postList = '';
+
 	    foreach ($articles as $article):
+
+			$toolbar = '<ul class="toolbar list-unstyled list-inline">';
+			if((isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) || (isset($_SESSION['username']) && $_SESSION['username'] == $article['user_name'])):
+				$toolbar .= '<li><a href="editPost.php?post_id=' . $article["post_id"] . '">' . 'Redigera' . '</a></li>' .
+				'<li><a href="deletePost.php?post_id=' . $article["post_id"] . '">' . 'Ta bort' . '</a></li>';
+			endif;	
+			$toolbar .= '</ul>';
+
 			$like_button ='';
 			if(isset($_SESSION['loggedIn'])){
 				$like_button = '<a class="likes-link" href="admin/like-post.php?post_id=' . $article["post_id"] . '" data-id="' . $article["post_id"] .'">' .
@@ -26,7 +35,8 @@ class ArticleTemplate
 			    '</div>' .
 		      	'<div class="article-content">' .
 			      	'<p>' . $article["content"] . '</p>' .
-		  		'</div>' .
+		  		'</div>' .	 
+		  		$toolbar . 		
 	    	'</div>';
 		 endforeach;
 

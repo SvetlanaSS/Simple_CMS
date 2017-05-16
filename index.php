@@ -17,7 +17,7 @@ if (empty($_SESSION)){
 }else{
   //print_r($_SESSION);
   $user_name = isset($_SESSION['username']) ? $_SESSION['username'] : '';
-  $user_welcome_message = isset($_SESSION['loggedIn']) ? '<h5>Välkommen ' .  $user_name . '</h5>' : '';    
+  //$user_welcome_message = isset($_SESSION['loggedIn']) ? '<h5>Välkommen ' .  $user_name . '</h5>' : '';    
 }
 ?>
   <?php include_once "partials/head.php";?>
