@@ -10,7 +10,9 @@
   $articleView = new ArticleTemplate();
 
   // fetch articles from db
-  $articleData = $articleModel->getAllArticlesByUser();
+  $user_id= $_SESSION['user_id'];
+  //print_r($_SESSION);
+  $articleData = $articleModel->getAllArticlesByUser($user_id);
 
   include_once "partials/head.php";
   include_once "partials/navmenu.php";
@@ -35,13 +37,15 @@
 
   <div class="container top_header">
     <form method="post" action="addPost.php">
-      <input class="btn btn-primary" type="submit" value="Lägga till post" name="addnewpost"></input>
+      <input class="btn btn-primary" type="submit" value="Lägg till post" name="addnewpost"></input>
     </form>
     <h1>Se alla dina livshistorier här</h1>
-    <?php
-      // print all articles
-      echo $articleView->getArticlesListByUser($articleData, $articleModel);
-    ?>
+      <div class="row">
+      <?php
+        // print all articles
+        echo $articleView->getArticlesListByUser($articleData, $articleModel);
+      ?>
+      </div>
   </div>
 
 <?php
