@@ -1,5 +1,5 @@
 <header>
-  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarCollapse" aria-expanded="false">
@@ -27,7 +27,7 @@
         $user_name = isset($_SESSION['username']) ? $_SESSION['username'] : '';  ?>
 
         <ul class="nav navbar-nav navbar-right my-link">
-          <li><a href="addPost.php" title="Nytt inlägg">Nytt inlägg</a></li>
+          <li><a href="addPost.php" title="Nytt inlägg"><i class="fa fa-plus"></i> Nytt inlägg</a></li>
           <li class="dropdown">
             <a class="dropdown-toggle" href="#" role="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> <?php echo $user_name;?>
             </a><span class="sr-only"></span>

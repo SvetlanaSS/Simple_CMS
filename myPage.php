@@ -17,27 +17,29 @@
   include_once "partials/head.php";
   include_once "partials/navmenu.php";
 ?>
-  <?php if(isset($_GET['addPostSuccess'])):?>
-    <div class="alert alert-info">
-      <p>Ditt inlägg har lagts till</p>
-    </div>
-  <?php endif;?>
+  <div class="container">
+    <?php if(isset($_GET['addPostSuccess'])):?>
+      <div class="alert alert-info">
+        <p>Ditt inlägg har lagts till</p>
+      </div>
+    <?php endif;?>
 
-  <?php if(isset($_GET['editPostSuccess'])):?>
-    <div class="alert alert-info">
-      <p>Ditt inlägg har redigerats</p>
-    </div>
-  <?php endif;?>
+    <?php if(isset($_GET['editPostSuccess'])):?>
+      <div class="alert alert-info">
+        <p>Ditt inlägg har redigerats</p>
+      </div>
+    <?php endif;?>
 
-  <?php if(isset($_GET['deletePostSuccess'])):?>
-    <div class="alert alert-info">
-      <p>Ditt inlägg togs bort</p>
-    </div>
-  <?php endif;?>
+    <?php if(isset($_GET['deletePostSuccess'])):?>
+      <div class="alert alert-info">
+        <p>Ditt inlägg togs bort</p>
+      </div>
+    <?php endif;?>
+   </div> 
 
   <div class="container top_header">
     <form method="post" action="addPost.php">
-      <input class="btn btn-primary" type="submit" value="Lägg till post" name="addnewpost"></input>
+      <input class="btn btn-success" type="submit" value="Nytt Inlägg" name="addnewpost"></input>
     </form>
     <h1>Se alla dina livshistorier här</h1>
       <div class="row">

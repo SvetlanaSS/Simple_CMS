@@ -17,11 +17,13 @@
   include_once "partials/navmenu.php";
   ?>
   <div class="container top_header">
-    <a href="myPage.php">Till alla inlägg</a>
-    <h1>Se alla dina livshistorier här</h1>
-    <?php
-      echo $articleView->getOneArticleByUser($articleData);
-    ?>
+      <a href="myPage.php">Till alla inlägg</a>
+      <h1>Se alla dina livshistorier här</h1>
+      <div class="row">
+        <?php
+          echo $articleView->getOneArticleByUser($articleData);
+        ?>
+    </div>
   </div>
 
   <?php
