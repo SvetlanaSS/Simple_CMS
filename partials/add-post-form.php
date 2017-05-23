@@ -5,7 +5,7 @@
           </div>
           <div class="form-group">
             <label class="control-label" for="content">Text *</label>
-            <textarea class="form-control" name="content" required></textarea>
+            <textarea class="form-control" name="content" required rows="10"></textarea>
           </div>
           <?php
           if (empty($_SESSION)){    
@@ -15,6 +15,6 @@
           <?php  
           }?>
           <div class="form-group">
-            <input class="btn btn-primary btn-block" type="submit" value="Lägga till post"></input>
+            <input class="btn btn-success btn-block" type="submit" value="Publicera"></input>
           </div>
         </form>
