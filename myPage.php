@@ -41,7 +41,7 @@
     <form method="post" action="addPost.php">
       <input class="btn btn-success" type="submit" value="Nytt Inlägg" name="addnewpost"></input>
     </form>
-    <h1>Se alla dina livshistorier här</h1>
+    <h1>Min Sida</h1>
       <div class="row">
       <?php
         // print all articles
