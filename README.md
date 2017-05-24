@@ -39,19 +39,19 @@ Det mesta av koden sköttes av php, JavaScript användes bara till att uppdatera
 
 Vi delade upp arbetet på detta sätt:
 
-#####Svetlana
+##### Svetlana
 * att visa sidan för inloggade användare
 * att visa min sida
 * lägga till post
 * redigera och ta bort posts
 
-#####Attila
+##### Attila
 * att registrera nya användare
 * likes
 * första sidan med alla posts
 * enskild blogginlägg visning
 
-#####Martin
+##### Martin
 * login
 * logout
 * admin
