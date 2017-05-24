@@ -7,8 +7,10 @@
   include_once "partials/navmenu.php";
 ?>
   <?php if(isset($_GET['registerSuccess'])):?>
-    <div class="alert alert-info">
-      <p>Registration was successful! Log in to start blogging!</p>
+    <div class="container">
+      <div class="alert alert-info">
+        <p>Du är nu registrerad! Logga in för att posta ditt första inlägg!</p>
+      </div>
     </div>
   <?php endif;?>  
 
